@@ -12,6 +12,7 @@ def buscar_paises():
     try:
         print("")
 
+    # Manejo de errores
     except Exception as e:
         print(f'❌¡Error inesperado! {e}')
 
@@ -44,6 +45,7 @@ def filtrar_paises():
             else:
                 print("❌¡Error! Ingrese una opción válida.")
 
+        # Manejo de errores
         except ValueError:
             print("❌¡Error! Debe ingresar un número.")
         except Exception as e:
@@ -89,7 +91,8 @@ def ordenar_paises():
                 break
             else:
                 print("❌¡Error! Ingrese una opción válida")
-
+        
+        # Manejo de errores
         except ValueError:
             print(f'❌¡Error! Ingrese un número.')
         except Exception as e:
@@ -131,6 +134,7 @@ def mostrar_estadisticas():
             else:
                 print("❌¡Error! Ingrese una opción válida.")
 
+        # Manejo de errores
         except ValueError:
             print("❌¡Error! Ingrese un número")
         except Exception as e:
