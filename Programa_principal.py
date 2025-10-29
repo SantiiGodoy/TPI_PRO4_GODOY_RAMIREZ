@@ -14,19 +14,20 @@ opc = int(input("Ingrese una opción (número correspondiente): "))
 
 # Llamamos a la función correspondiente según la opción elegida
 try:
-    if opc == 1:
-        buscar_paises()
-    elif opc == 2:
-        filtrar_paises()
-    elif opc == 3:
-        ordenar_paises()
-    elif opc == 4:
-        mostrar_estadisticas()
-    elif opc == 5:
-        print("Saliendo del programa...")
-        exit
-    else:
-        print("❌¡Error! Ingrese una opción válida")
+    while True:
+        if opc == 1:
+            buscar_paises()
+        elif opc == 2:
+            filtrar_paises()
+        elif opc == 3:
+            ordenar_paises()
+        elif opc == 4:
+            mostrar_estadisticas()
+        elif opc == 5:
+            print("Saliendo del programa...")
+            exit
+        else:
+            print("❌¡Error! Ingrese una opción válida")
 
 except ValueError:
     print("❌¡Error! Para elegir la opción debe ingresar el número correspondiente.")
