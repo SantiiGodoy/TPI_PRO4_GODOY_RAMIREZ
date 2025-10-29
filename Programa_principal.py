@@ -29,6 +29,7 @@ try:
         else:
             print("❌¡Error! Ingrese una opción válida")
 
+# Manejo de errores
 except ValueError:
     print("❌¡Error! Para elegir la opción debe ingresar el número correspondiente.")
 except Exception as e:
