@@ -1,4 +1,3 @@
-import csv
 from funciones_menu import * # Importamos funciones principales del menú
 
 print("==============================")
