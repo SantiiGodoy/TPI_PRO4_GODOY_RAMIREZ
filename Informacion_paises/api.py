@@ -52,4 +52,3 @@ except ValueError:
     print("❌ Error. La respuesta no tiene formato JSON válido.") #Error json.
 
 
-#esto es una prueba de push
