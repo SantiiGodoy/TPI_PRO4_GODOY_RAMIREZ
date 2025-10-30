@@ -1,27 +1,45 @@
 # =====================
-#   LLAMADAS A LA API
+# = LLAMADAS A LA API = 
 # =====================
 
-import requests
-import json
+import requests #---Importamos e instalamos requests---/Comando pip install requests\
+import csv
 
 # --- Configuración de la API ---
-URL_API_ALL = "https://restcountries.com/v3.1/all"
+URL_API = "https://restcountries.com/v3.1/all?fields=name,population,area,region,translations"
 
 print(" Carga inicial de datos de TODOS los países...")
 
-# 1. Realizar la solicitud GET inicial para obtener todos los países
+lista_paises = []
+
+#Realizar la solicitud GET inicial para obtener todos los países
 try:
-    respuesta = requests.get(URL_API_ALL)
+    respuesta = requests.get(URL_API)
     
-    if respuesta.status_code == 200:
-        datos_completos = respuesta.json()
-        print(f"✅ Se cargaron países. ¡Listo para buscar!")
-        
-    else:
-        print(f"❌ Error al conectar con la API. Código: {respuesta.status_code}")
-        exit()
-        
+    respuesta.raise_for_status() #Lanza ERROR si el estado no es 200.
+    datos = respuesta.json()
+    print(f"✅ Se cargaron correctamente países.")
+    with open("paises.csv", "w", encoding="utf-8") as paises_csv:
+        campos = ["nombre", "poblacion","superficie","continente"]
+        writer = csv.DictWriter(paises_csv,fieldnames=campos)
+
+        writer.writeheader()
+        for pais in datos:
+            nombre = pais.get("translations", {}).get("spa", {}).get("common", pais.get("name", {}).get("common", "Desconocido"))
+            poblacion = pais.get("population", "Desconocida")
+            superficie = pais.get("area", "Desconocida")
+            continente = pais.get("region", "Desconocido")
+            writer.writerows(f"{nombre},{poblacion},{superficie},{continente}")
+
+            lista_paises.append({
+                "nombre":nombre,
+                "poblacion":poblacion,
+                "superficie":superficie,
+                "continente":continente
+            })
+        print("✅ Países cargados correctamente.")
+
 except requests.exceptions.RequestException as e:
-    print(f"❌ Error de red o conexión: {e}")
-    exit() # Error de conexión
+    print(f"❌ Error de red o conexión: {e}") # Error de solicitud.
+except ValueError:
+    print("❌ Error. La respuesta no tiene formato JSON válido.") #Error json.
