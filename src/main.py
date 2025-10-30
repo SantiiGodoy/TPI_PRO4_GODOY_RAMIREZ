@@ -1,4 +1,4 @@
-from funciones_menu import * # Importamos funciones principales del menú
+from src.funciones_menu import * # Importamos funciones principales del menú
 
 print("==============================")
 print("  GESTIÓN DE DATOS DE PAÍSES  ")
