@@ -50,3 +50,6 @@ except requests.exceptions.RequestException as e:
     print(f"❌ Error de red o conexión: {e}") # Error de solicitud.
 except ValueError:
     print("❌ Error. La respuesta no tiene formato JSON válido.") #Error json.
+
+
+#esto es una prueba de push
