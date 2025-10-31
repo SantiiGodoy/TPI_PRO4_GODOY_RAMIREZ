@@ -5,30 +5,30 @@ from Datos.api import paises
 
 # ==== FUNCIÓN PARA BUSCAR PAÍS POR NOMBRE ====
 def buscar_paises():
-    pais_b = input("Ingrese el país a buscar: ").strip().capitalize()
+    pais_b = input("Ingrese el país a buscar: ").strip()
 
     try:
-        encontrado = False
+        p_encontrados = []
 
+        # Búsqueda exacta 
         for pais in paises:
-            nombre_pais = pais["nombre"]
-            #====Buscar de manera excata====
-            if pais_b == pais.capitalize():
-                print("\n----------------------------")
-                print(f' Información de {pais_b} ')
-                print("---------------------------")
+            if pais_b.lower() == pais["nombre"].lower():
+                p_encontrados.append(pais)
+
+        # Búsqueda parcial
+        if not p_encontrados:
+            for pais in paises:
+                if pais_b.lower() in pais["nombre"].lower():
+                    p_encontrados.append(pais)
+        
+        if p_encontrados:
+            print("\n--------------------------")
+            print("  País(es) encontrado(s)  ")
+            print("--------------------------")
+            for pais in p_encontrados:
                 print(f'{pais["nombre"]} | {pais["población"]} | {pais["superficie"]} | {pais["continente"]}')
-                encontrado = True
-
-            elif pais_b in nombre_pais.capitalize():
-                print("\n----------------------------")
-                print(f' Coincidencia parcial: {nombre_pais} ')
-                print("----------------------------")
-                print(f'{nombre_pais} | {pais["población"]} | {pais["superficie"]} | {pais["continente"]}')
-                encontrado = True
-
-        if not encontrado:
-            print("❌¡País no encontrado!")
+        else:
+            print("❌¡Error! País no encontrado.")
 
     # Manejo de errores
     except Exception as e:
