@@ -5,9 +5,9 @@ import csv
 
 # ---- Función para buscar país ----
 def buscar_paises():
-    pais_b = input("Ingrese el pais a buscar: ")
+    pais_b = input("Ingrese el país a buscar: ")
     print("\n----------------------------")
-    print(f'  Información de {pais_b}  ')
+    print(f' Información de {pais_b} ')
 
     try:
         print("")

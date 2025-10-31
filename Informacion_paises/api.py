@@ -38,7 +38,7 @@ try:
                 "continente": continente
                 })
 
-            lista_paises.append({ #Agregamos diccionario con datos a la lista.SS
+            lista_paises.append({ #Agregamos diccionario con datos a la lista.
                 "nombre":nombre,
                 "poblacion":poblacion,
                 "superficie":superficie,
