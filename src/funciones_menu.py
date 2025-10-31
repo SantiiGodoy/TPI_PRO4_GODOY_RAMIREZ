@@ -2,7 +2,6 @@
 #   FUNCIONES PRINCIPALES DEL MENÚ
 # ==================================
 import csv
-
 # ---- Función para buscar país ----
 def buscar_paises():
     pais_b = input("Ingrese el país a buscar: ")
