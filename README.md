@@ -3,7 +3,7 @@
 ### Integrantes
 
 - Godoy Santino
-- Facundo Ramírez
+- Ramírez Facundo
 
 ### Docene Tutor
 
