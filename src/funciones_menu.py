@@ -57,7 +57,7 @@ def filtrar_paises():
 from Datos.api import paises
 
 # --- Función para ordenar los países según el campo
-def ordenar_paises(campo, i=0):
+def mostrar_paises_ord(campo, i=0):
     if i == len(campo):
         return
     else:
@@ -79,7 +79,7 @@ def ordenar_paises(): # Función principal con menú y subfunciones
                 print("\n  Países ordenados por nombre  ")
                 print("-------------------------------")
                 paises_ord = sorted(paises)
-                ordenar_paises(paises_ord)
+                mostrar_paises_ord(paises_ord)
 
             elif opc == 2:
                 print("\n  Países ordenados por población  ")
@@ -96,13 +96,13 @@ def ordenar_paises(): # Función principal con menú y subfunciones
                         print("\n  Países por orden Ascendente  ")
                         print("-------------------------------")
                         paises_sup_asc = sorted(paises, key=lambda pais: pais["superficie"])
-                        ordenar_paises(paises_sup_asc)
+                        mostrar_paises_ord(paises_sup_asc)
 
                     elif asc_des == "D":
                         print("\n  Países por orden Descendente  ")
                         print("--------------------------------")
                         paises_sup_desc = sorted(paises, key=lambda pais: pais["superficie"], reverse=True)
-                        ordenar_paises(paises_sup_desc)
+                        mostrar_paises_ord(paises_sup_desc)
                     else:
                         print("❌¡Error! Ingrese una opción válida.")
 
