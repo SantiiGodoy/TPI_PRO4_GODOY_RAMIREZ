@@ -2,6 +2,7 @@
 #   FUNCIONES PRINCIPALES DEL MENÚ
 # ==================================
 import csv
+
 # ---- Función para buscar país ----
 def buscar_paises():
     pais_b = input("Ingrese el país a buscar: ")
@@ -16,7 +17,7 @@ def buscar_paises():
         print(f'❌¡Error inesperado! {e}')
 
 
-# ---- Función para filtrar países ----
+# ---- Función para filtrar países ---- === SANTI ===
 def filtrar_paises():
     while True:
         print("\n-------------------------")
@@ -50,8 +51,20 @@ def filtrar_paises():
         except Exception as e:
             print(f'❌¡Error inesperado! {e}')
 
-# ---- Función para ordenar países ----
-def ordenar_paises():
+
+
+# ---- Función para ordenar países ---- === FACU ===
+from Datos.api import paises
+
+# --- Función para ordenar los países según el campo
+def mostrar_paises_ord(campo, i=0):
+    if i == len(campo):
+        return
+    else:
+        print(f'{campo[i]["nombre"]} | {campo[i]["población"]} | {campo[i]["superficie"]} | {campo[i]["continente"]}')
+        ordenar_paises(campo, i+1)
+
+def ordenar_paises(): # Función principal con menú y subfunciones
     while True:
         print("\n-------------------------")
         print("     Ordenar países por:   ")
@@ -65,10 +78,14 @@ def ordenar_paises():
             if opc == 1:
                 print("\n  Países ordenados por nombre  ")
                 print("-------------------------------")
+                paises_ord = sorted(paises)
+                mostrar_paises_ord(paises_ord)
 
             elif opc == 2:
                 print("\n  Países ordenados por población  ")
                 print("----------------------------------")
+                paises_por_p = sorted(paises, key= lambda pais: pais["poblacion"], reverse=True)
+                ordenar_paises(paises_por_p)
 
             elif opc == 3:
                 print("\n  Países ordenados por superficie  ")
@@ -76,10 +93,16 @@ def ordenar_paises():
                 asc_des = input('Ingrese "A" (ascendente) o "D" (descendente) para filtrar: ').upper()
                 try:
                     if asc_des == "A":
-                        print("")
+                        print("\n  Países por orden Ascendente  ")
+                        print("-------------------------------")
+                        paises_sup_asc = sorted(paises, key=lambda pais: pais["superficie"])
+                        mostrar_paises_ord(paises_sup_asc)
 
                     elif asc_des == "D":
-                        print("")
+                        print("\n  Países por orden Descendente  ")
+                        print("--------------------------------")
+                        paises_sup_desc = sorted(paises, key=lambda pais: pais["superficie"], reverse=True)
+                        mostrar_paises_ord(paises_sup_desc)
                     else:
                         print("❌¡Error! Ingrese una opción válida.")
 
@@ -98,7 +121,7 @@ def ordenar_paises():
             print(f'❌¡Error inesperado! {e}')
 
 
-# ---- Función para mostrar estadísticas de países ----
+# ---- Función para mostrar estadísticas de países ---- === FACU ===
 def mostrar_estadisticas():
     while True:
         print("\n------------------------")

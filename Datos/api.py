@@ -34,15 +34,15 @@ def datos_api():
 
                 writer.writerow({ #Agregamos datos al CSV.
                     "nombre": nombre,
-                    "poblacion": poblacion,
-                    "superficie": superficie,
+                    "poblacion": int(poblacion),
+                    "superficie": float(superficie),
                     "continente": continente
                     })
 
                 lista_paises.append({ #Agregamos diccionario con datos a la lista.
                     "nombre":nombre,
-                    "poblacion":poblacion,
-                    "superficie":superficie,
+                    "poblacion":int(poblacion),
+                    "superficie":float(superficie),
                     "continente":continente
                 })
             print("✅ Países cargados correctamente.")
@@ -51,6 +51,6 @@ def datos_api():
     except requests.exceptions.RequestException as e:
         print(f"❌ Error de red o conexión: {e}") # Error de solicitud.
     except ValueError:
-        print("❌ Error. La respuesta no tiene formato JSON válido.") #Error json.
+        print("❌ ¡Error! La respuesta no tiene formato JSON válido.") #Error json.
 
 
