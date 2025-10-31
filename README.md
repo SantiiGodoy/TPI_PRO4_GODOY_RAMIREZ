@@ -15,7 +15,7 @@ Este proyecto se desarrolló como parte del Trabajo Práctico Integrador de la m
 
 Con el objetivo de crear un programa que permita gestionar información sobre distintos países a partir de un archivo CSV. De esta manera, el usuario. puede buscar, filtrar y ordenar tanto datos como estádisticas sobre éstos. Lo cual se logró mediante diferentes estructuras como listas, diccionarios y funciones.
 
-## objetivos
+## Objetivos
 
 - Afianzar el uso de estructura de datos como **listas y diccionarios**.
 - **Modularizar el código** mediante funciones obteniendo un código más claro y prolijo.
