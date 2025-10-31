@@ -5,17 +5,28 @@ from Datos.api import paises
 
 # ==== FUNCIÓN PARA BUSCAR PAÍS POR NOMBRE ====
 def buscar_paises():
-    pais_b = input("Ingrese el país a buscar: ").capitalize()
+    pais_b = input("Ingrese el país a buscar: ").strip().capitalize()
 
     try:
         encontrado = False
-        for pais in paises: 
+
+        for pais in paises:
+            nombre_pais = pais["nombre"]
+            #====Buscar de manera excata====
             if pais_b == pais.capitalize():
                 print("\n----------------------------")
                 print(f' Información de {pais_b} ')
                 print("---------------------------")
                 print(f'{pais["nombre"]} | {pais["población"]} | {pais["superficie"]} | {pais["continente"]}')
                 encontrado = True
+
+            elif pais_b in nombre_pais.capitalize():
+                print("\n----------------------------")
+                print(f' Coincidencia parcial: {nombre_pais} ')
+                print("----------------------------")
+                print(f'{nombre_pais} | {pais["población"]} | {pais["superficie"]} | {pais["continente"]}')
+                encontrado = True
+
         if not encontrado:
             print("❌¡País no encontrado!")
 
