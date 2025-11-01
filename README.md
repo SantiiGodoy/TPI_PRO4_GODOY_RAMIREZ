@@ -9,40 +9,11 @@
 
 - Cinthia Rigoni
 
-#
+## Descripción del programa
 
 Este proyecto se desarrolló como parte del Trabajo Práctico Integrador de la materia Programación I, de la **Tecnicatura Universitaria en Programación** de la **Facultad Tecnológica Nacional (UTN)**.
 
-Con el objetivo de crear un programa que permita gestionar información sobre distintos países a partir de un archivo CSV. De esta manera, el usuario. puede buscar, filtrar y ordenar tanto datos como estádisticas sobre éstos. Lo cual se logró mediante diferentes estructuras como listas, diccionarios y funciones.
-
-## Objetivos
-
-- Afianzar el uso de estructura de datos como **listas y diccionarios**.
-- **Modularizar el código** mediante funciones obteniendo un código más claro y prolijo.
-- Implementar **filtrado, ordenamiento y análisis estádistico** de la información.
-- Realizar la lectura y gestión de datos mediante **archivos CSV**.
-- Lograr el desarrollo de un programa **legible, documentado correctamente y funcional**.
-
-## Conceptos claves
-
-El proyecto se desarrolló en los siguientes conceptos:
-
-- **Listas:** para almacenar múltiples registros de países.
-- **diccionarios:** para guardar y ordenar la información de cada país.
-- **Funciones:** con el fin de modularizar tareas específicas.
-- **Condicionales:** para validar entradas y controlar el flujo del programa.
-- **Estructuras repetitivas:** para recorrer y procesar los datos.
-- **Ordenamiento:** por nombre, población o superficie.
-- **Estadísticas:** cálculo de promedios, conteos por continente, máximos y mínimos.
-- **Archivos CSV:** lectura estructurada de datos externos.
-
-## Requisitos Técnicos
-
-- **Lenguaje:** Python 3.x
-- **Librerías estándar utilizadas:**
-  - `csv` Para la lectura de archivos
-  - `os` Para verificar la existencia del archivo
-- **Ejecución:** programa mostrado en consola
+Con el objetivo de crear un programa que permita gestionar información sobre distintos países a partir de la la información traída desde la **API pública de RestCountries** (`https://restcountries.com`) que luego se almacenó en un archivo CSV para conseguir la permanencia de estos datos. De esta manera, el usuario puede buscar, filtrar y ordenar tanto datos como estádisticas sobre éstos sin la necesidad de llamar a la función y cargar los datos nuevamente cada vez que se inicia el programa. Esto se logró mediante diferentes estructuras como listas, diccionarios y funciones junto con el correcto manejo de errores y mensajes claros para que el usuario entienda los procesos o errores que devolvía el programa.
 
 ## Estructura del proyecto
 
@@ -71,3 +42,68 @@ El proyecto se desarrolló en los siguientes conceptos:
    &nbsp;&nbsp;&nbsp;4 - Mostrar estadísticas.  
    &nbsp;&nbsp;&nbsp;5 - Salir del programa  
    &nbsp;&nbsp;&nbsp;Ingrese una opción (número correspondiente):
+
+## Ejemplo de entrada y salida
+
+### Buscar país por nombre
+
+#### Entrada:
+
+Ingrese el país a buscar: Argentina
+
+#### Salida:
+
+`--------------------------`  
+ País(es) encontrado(s)  
+`--------------------------`  
+Argentina | 45,808,747 | 2,780,400.0 | América
+
+#### Entrada (búsqueda parcial):
+
+Ingrese el país a buscar: un
+
+#### Salida (coincidencias parciales):
+
+`--------------------------`  
+País(es) encontrado(s)  
+`--------------------------`  
+Reino Unido | 67,508,936 | 243,610.0 | Europa  
+Hungría | 9,689,010 | 93,028.0 | Europa
+
+### Mostrar estadísticas
+
+#### Entrada:
+
+Opción 3: Promedio de población
+
+#### Salida:
+
+El promedio de población es de 38,245,912 habitantes.
+
+#### Entrada:
+
+Opción 5: Cantidad de países por continente
+
+#### Salida:
+
+`-----------------------------------`  
+Cantidad de países en América: 56  
+`-----------------------------------`  
+Cantidad de países en Europa: 44  
+`-----------------------------------`  
+Cantidad de paises en Asia: 50  
+`-----------------------------------`  
+Cantidad de países en Oceanía: 14  
+`-----------------------------------`  
+Cantidad de países en África: 54  
+`-----------------------------------`  
+¡No hay países en la antártida!  
+`-----------------------------------`
+
+## Participación de los integrantes
+
+El proyecto fue desarrollado de manera colaborativa en todas las etapas.
+
+Trabajamos juntos en la implementación del archivo api.py y así, conseguir la conexión con la API de RestCountries, la descarga de datos y la creación del archivo paises.csv. Asimismo, hicimos la estructura principal del programa main.py, armando la estructura del menú y la lógica de ejecución del programa.
+
+Para el desarrollo de las funciones y subfunciones del menú (funciones_menu.py), nos dividimos las tareas en partes iguales, de manera que cada integrante se encargó de crear y probar un conjunto de funciones (búsqueda, filtrado, ordenamiento, estadísticas), asegurando que todo el código mantuviera coherencia y consistencia. Esta división del trabajo se hizo sin dejar de lado la comunicación entre los dos ya que estuvimos haciéndo consultas y ayudando al otro en su código si había un problema constantemente.
