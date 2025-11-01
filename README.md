@@ -5,7 +5,7 @@
 - Godoy Santino
 - Ramírez Facundo
 
-### Docene Tutor
+### Docente Tutor
 
 - Cinthia Rigoni
 
