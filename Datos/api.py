@@ -2,19 +2,18 @@
 # = LLAMADAS A LA API = 
 # =====================
 
+# Importaciones necesarias
 import requests #---Importamos e instalamos requests---/Comando pip install requests\
 import csv # Importamos librería CSV
-import os # Importamos librería OS
+from src.validaciones import val_csv, val_lista
 
 # --- Configuración de la API ---
 URL_API = "https://restcountries.com/v3.1/all?fields=name,population,area,region,translations"
 
 def datos_api():
     lista_paises = []
-    if os.path.exists("paises.csv") and os.path.getsize("paises.csv") != 0 and len(lista_paises) != 0: # Si el csv y la lista ya están cargados
-        print("✅¡Los datos ya están cargados!")
 
-    elif os.path.exists("paises.csv") and len(lista_paises) == 0: # Si el csv está cargado pero la lista no
+    if val_csv("paises.csv"):
         try:
             with open("paises.csv", "r", encoding="utf-8") as paises:
                 datos = csv.DictReader(paises)
@@ -31,11 +30,15 @@ def datos_api():
                     "continente":continente
                 })
 
-            print("✅ Países cargados correctamente.")
-            return lista_paises
-        
+            if val_lista(paises):
+                print("✅ Países cargados correctamente.")
+                return lista_paises
+            else:
+                print("❌¡Error! el archivo no contiene datos válidos.")
+
         except Exception as e:
             print(f'❌¡Error inesperado! {e}.')
+            return []
 
     else: # Si no está cargado el csv ni la lista
         print(" Carga inicial de datos de TODOS los países...")
@@ -66,8 +69,14 @@ def datos_api():
                         "superficie":float(superficie),
                         "continente":continente
                     })
-                print("✅ Países cargados correctamente.")
+                
+                if val_lista(paises):
+                    print("✅ Países cargados correctamente.")
+                else:
+                    print("❌¡Error! No se pudo cargar la información de los países.")
+
                 return lista_paises
+            
         except requests.exceptions.RequestException as e:
             print(f"❌ Error de red o conexión: {e}") # Error de solicitud.
         except ValueError:

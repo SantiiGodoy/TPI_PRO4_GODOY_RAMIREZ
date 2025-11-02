@@ -22,8 +22,12 @@ Con el objetivo de crear un programa que permita gestionar información sobre di
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--- api.py # Función que llama a la API para completar el CSV.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--- paises.csv # Archivo CSV con la información de los países.  
 |--- src/  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--- busquedas.py # Archivo donde se buscan países de forma exacta o parcial.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--- estadisticas.py # Archivo donde se ven las estadísticas según el criterio elegido.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--- filtros.py # Archivo donde se ordenan y muestran países según el criterio elegido.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--- main.py # Archivo con el programa principal (menú principal).  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--- funciones_menu.py # Archivo con las funciones y subfunciones del menú.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--- ordenamiento.py # Archivo donde se ordena información según el criterio elegido.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--- validaciones.py # Archivo con validaciones para el correcto funcionamiento del programa.
 
 ## ¿Cómo usar el programa?
 
@@ -106,4 +110,4 @@ El proyecto fue desarrollado de manera colaborativa en todas las etapas.
 
 Trabajamos juntos en la implementación del archivo api.py y así, conseguir la conexión con la API de RestCountries, la descarga de datos y la creación del archivo paises.csv. Asimismo, hicimos la estructura principal del programa main.py, armando la estructura del menú y la lógica de ejecución del programa.
 
-Para el desarrollo de las funciones y subfunciones del menú (funciones_menu.py), nos dividimos las tareas en partes iguales, de manera que cada integrante se encargó de crear y probar un conjunto de funciones (búsqueda, filtrado, ordenamiento, estadísticas), asegurando que todo el código mantuviera coherencia y consistencia. Esta división del trabajo se hizo sin dejar de lado la comunicación entre los dos ya que estuvimos haciéndo consultas y ayudando al otro en su código si había un problema constantemente.
+Para el desarrollo de las funciones y subfunciones del menú, nos dividimos las tareas en partes iguales, de manera que cada integrante se encargó de crear y probar un conjunto de funciones (búsqueda, filtrado, ordenamiento, estadísticas), asegurando que todo el código mantuviera coherencia y consistencia. Esta división del trabajo se hizo sin dejar de lado la comunicación entre los dos ya que estuvimos haciéndo consultas y ayudando al otro en su código si había un problema constantemente.
