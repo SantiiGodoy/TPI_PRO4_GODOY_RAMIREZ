@@ -18,10 +18,10 @@ def datos_api():
             with open("paises.csv", "r", encoding="utf-8") as paises:
                 datos = csv.DictReader(paises)
             for fila in datos:
-                nombre = fila.get("translations", {}).get("spa", {}).get("common", fila.get("name", {}).get("common", "Desconocido"))
-                poblacion = fila.get("population", "Desconocida")
-                superficie = fila.get("area", "Desconocida")
-                continente = fila.get("region", "Desconocido")
+                nombre = fila["nombre"]
+                poblacion = fila["población"]
+                superficie = fila["superficie"]
+                continente = fila["continente"]
 
                 lista_paises.append({
                     "nombre":nombre,
