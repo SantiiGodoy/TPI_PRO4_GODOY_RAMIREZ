@@ -1,16 +1,17 @@
 # ==== FUNCIONES PARA FILTRAR PAÍSES ==== 
-from api import paises
+import api
 from validaciones import val_lista, val_num, val_opc_menu
 
 # Función para filtrar países por continente
 def filtrar_cont():
+    paises = api.paises
     if not val_lista(paises):
         return
     
     ord_cont = sorted(paises, key=lambda pais: pais["continente"])
 
     while True:
-        print("  Elija un continente  ")
+        print("\n  Elija un continente  ")
         print("-----------------------")
         print("1. América")
         print("2. Europa")
@@ -21,17 +22,17 @@ def filtrar_cont():
         print("7. volver")
         opc_cont = input("Ingrese una opción (número): ")
         
-        if val_num(opc):
-            opc = int(opc)
-            if val_opc_menu(opc):
+        if val_num(opc_cont):
+            opc_cont = int(opc_cont)
+            if val_opc_menu(opc_cont):
                 try:
                     if opc_cont == 1:
                         print("\n--------------------------")
                         print("    Países de América    ")
                         print("-------------------------")
                         for pais in ord_cont:
-                            if pais["continente"] == "america":
-                                print(f'{pais["nombre"]} | {pais["población"]} | {pais["superficie"]} | {pais["continente"]}')
+                            if pais["continente"] == "América":
+                                print(f'{pais["nombre"]} | {pais["poblacion"]} | {pais["superficie"]} | {pais["continente"]}')
                             else:
                                 pass
                     elif opc_cont == 2:
@@ -40,8 +41,8 @@ def filtrar_cont():
                         print("    Países de Europa     ")
                         print("-------------------------")
                         for pais in ord_cont:
-                            if pais["continente"] == "europa":
-                                print(f'{pais["nombre"]} | {pais["población"]} | {pais["superficie"]} | {pais["continente"]}')
+                            if pais["continente"] == "Europa":
+                                print(f'{pais["nombre"]} | {pais["poblacion"]} | {pais["superficie"]} | {pais["continente"]}')
                             else:
                                 pass
                             
@@ -50,8 +51,8 @@ def filtrar_cont():
                         print("     Países de Asia      ")
                         print("-------------------------")
                         for pais in ord_cont:
-                            if pais["continente"] == "asia":
-                                print(f'{pais["nombre"]} | {pais["población"]} | {pais["superficie"]} | {pais["continente"]}')
+                            if pais["continente"] == "Asia":
+                                print(f'{pais["nombre"]} | {pais["poblacion"]} | {pais["superficie"]} | {pais["continente"]}')
                             else:
                                 pass
                     elif opc_cont == 4:
@@ -59,8 +60,8 @@ def filtrar_cont():
                         print("    Países de África    ")
                         print("-------------------------")
                         for pais in ord_cont:
-                            if pais["continente"] == "africa":
-                                print(f'{pais["nombre"]} | {pais["población"]} | {pais["superficie"]} | {pais["continente"]}')
+                            if pais["continente"] == "África":
+                                print(f'{pais["nombre"]} | {pais["poblacion"]} | {pais["superficie"]} | {pais["continente"]}')
                             else:
                                 pass
                     elif opc_cont == 5:
@@ -68,8 +69,8 @@ def filtrar_cont():
                         print("    Países de Oceanía    ")
                         print("-------------------------")
                         for pais in ord_cont:
-                            if pais["continente"] == "oceania":
-                                print(f'{pais["nombre"]} | {pais["población"]} | {pais["superficie"]} | {pais["continente"]}')
+                            if pais["continente"] == "Oceanía":
+                                print(f'{pais["nombre"]} | {pais["poblacion"]} | {pais["superficie"]} | {pais["continente"]}')
                             else:
                                 pass
                     elif opc_cont == 6:
@@ -91,6 +92,7 @@ def filtrar_cont():
 
 # Función para obtener el rango de la población
 def rang_pobl():
+    paises = api.paises
     pais_menor = min(paises, key=lambda pais: pais["poblacion"])
     pais_mayor = max(paises, key=lambda pais: pais["poblacion"])
 
@@ -102,18 +104,34 @@ def rang_pobl():
 
 # Función para obtener el rango de la superficie
 def rango_sup():
+    paises = api.paises
     print("=== País con menor y mayor superficie ===")
 
-    paises_con_area = [pais for pais in paises if pais.get("area") is not None]
+    paises_con_area = []
+    for pais in paises:
+        sup = pais.get("superficie", None)
+        if sup is None:
+            sup = pais.get("area", None)
+        try:
+            sup_val = float(sup)
+        except (TypeError, ValueError):
+            continue
+        p = pais.copy()
+        p["area_val"] = sup_val
+        paises_con_area.append(p)
+
+    if not paises_con_area:
+        print("❌¡Error! No hay datos de superficie disponibles.")
+        return
 
     # Encontrar país con mayor y menor superficie
-    pais_menor = min(paises_con_area, key=lambda pais: pais["area"])
-    pais_mayor = max(paises_con_area, key=lambda pais: pais["area"])
+    pais_menor = min(paises_con_area, key=lambda pais: pais["area_val"])
+    pais_mayor = max(paises_con_area, key=lambda pais: pais["area_val"])
 
     print("País con MENOR superficie:")
-    print(f"- {pais_menor["nombre"]} = {pais_menor["area"]:,} km²")
-    print(" País con MAYOR superficie:")
-    print(f"- {pais_mayor["nombre"]} = {pais_mayor["area"]:,} km²")
+    print(f"- {pais_menor['nombre']} = {int(pais_menor['area_val']):,} km²")
+    print("País con MAYOR superficie:")
+    print(f"- {pais_mayor['nombre']} = {int(pais_mayor['area_val']):,} km²")
 
 # Función principal para filtrar países
 def filtrar_paises():

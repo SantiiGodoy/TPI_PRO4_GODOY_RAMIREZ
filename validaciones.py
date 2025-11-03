@@ -19,7 +19,7 @@ def val_csv(archivo):
 
 # ---- Validación opc del menú principal ----
 def val_opc_menu(opc):
-    opc_disp = [1,2,3,4,5]
+    opc_disp = [1,2,3,4,5,6,7]
     if opc not in opc_disp:
         print("❌¡Error! Ingrese una opción válida.")
         return False

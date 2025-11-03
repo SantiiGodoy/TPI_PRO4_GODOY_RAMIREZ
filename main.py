@@ -1,15 +1,16 @@
 # Importaciones al menú principal
-from api import datos_api
+import api
 from busquedas import buscar_paises 
 from filtros import filtrar_paises
 from ordenamiento import ordenar_paises
 from estadisticas import mostrar_estadisticas
 from validaciones import val_opc_menu, val_num
 
-datos_api() # Llamamos a la función para cargar el csv y la lista con la API
+# Llamamos a la función para cargar el csv y la lista con la API
+api.datos_api()
 
 while True:
-    print("==============================")
+    print("\n==============================")
     print("  GESTIÓN DE DATOS DE PAÍSES  ")
     print("==============================\n")
 
@@ -37,7 +38,7 @@ while True:
                     mostrar_estadisticas()
                 elif opc == 5:
                     print("Saliendo del programa...")
-                    exit
+                    break
 
             # Manejo de errores
             except ValueError:
