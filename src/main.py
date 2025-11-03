@@ -38,8 +38,6 @@ while True:
                 elif opc == 5:
                     print("Saliendo del programa...")
                     exit
-                else:
-                    print("❌¡Error! Ingrese una opción válida")
 
             # Manejo de errores
             except ValueError:
