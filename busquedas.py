@@ -1,6 +1,6 @@
 # ==== FUNCIÓN PARA BUSCAR PAÍS POR NOMBRE ====
-from Datos.api import paises
-from src.validaciones import val_nom, val_lista
+from api import paises
+from validaciones import val_nom, val_lista
 
 def buscar_paises():
     if not val_lista(paises):
