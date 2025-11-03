@@ -1,10 +1,10 @@
 # Importaciones al menú principal
-from Datos.api import datos_api
-from src.busquedas import buscar_paises 
-from src.filtros import filtrar_paises
-from src.ordenamiento import ordenar_paises
+from api import datos_api
+from busquedas import buscar_paises 
+from filtros import filtrar_paises
+from ordenamiento import ordenar_paises
 from estadisticas import mostrar_estadisticas
-from src.validaciones import val_opc_menu, val_num
+from validaciones import val_opc_menu, val_num
 
 datos_api() # Llamamos a la función para cargar el csv y la lista con la API
 

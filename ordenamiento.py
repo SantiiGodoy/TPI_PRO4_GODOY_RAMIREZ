@@ -1,6 +1,6 @@
 # ==== FUNCIONES PARA ORDENAR PAÍSES ====
-from Datos.api import paises
-from src.validaciones import val_lista, val_num, val_opc_menu
+from api import paises
+from validaciones import val_lista, val_num, val_opc_menu
 
 # Función para ordenar los países según el campo
 def mostrar_paises_ord(campo, i=0):

@@ -39,7 +39,7 @@ Con el objetivo de crear un programa que permita gestionar información sobre di
 3. **Instalar el paquete Requests para enviar peticiones a la API:**  
    &nbsp;&nbsp;&nbsp;pip install requests # Ya que usaremos la API de "https://restcountries.com/"
 4. **Ejecutar el programa:**  
-   &nbsp;&nbsp;&nbsp;python main.py
+   &nbsp;&nbsp;&nbsp;python src/main.py
 5. **Seguir las opciones indicadas en el menú:**  
    &nbsp;&nbsp;&nbsp;1 - Buscar país por nombre.  
    &nbsp;&nbsp;&nbsp;2 - Filtrar países.  
