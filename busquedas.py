@@ -1,8 +1,9 @@
 # ==== FUNCIÓN PARA BUSCAR PAÍS POR NOMBRE ====
-from api import paises
+import api
 from validaciones import val_nom, val_lista
 
 def buscar_paises():
+    paises = api.paises
     if not val_lista(paises):
         return
     
@@ -29,7 +30,7 @@ def buscar_paises():
             print("  País(es) encontrado(s)  ")
             print("--------------------------")
             for pais in p_encontrados:
-                print(f'{pais["nombre"]} | {pais["población"]} | {pais["superficie"]} | {pais["continente"]}')
+                print(f'{pais["nombre"]} | {pais["poblacion"]} | {pais["superficie"]} | {pais["continente"]}')
         else:
             print("❌¡Error! País no encontrado.")
 

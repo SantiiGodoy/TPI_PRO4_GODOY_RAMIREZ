@@ -1,5 +1,5 @@
 # ==== FUNCIONES PARA ORDENAR PAÍSES ====
-from api import paises
+import api
 from validaciones import val_lista, val_num, val_opc_menu
 
 # Función para ordenar los países según el campo
@@ -7,11 +7,12 @@ def mostrar_paises_ord(campo, i=0):
     if i == len(campo):
         return
     else:
-        print(f'{campo[i]["nombre"]} | {campo[i]["población"]} | {campo[i]["superficie"]} | {campo[i]["continente"]}')
-        ordenar_paises(campo, i+1)
+        print(f'{campo[i]["nombre"]} | {campo[i]["poblacion"]} | {campo[i]["superficie"]} | {campo[i]["continente"]}')
+        mostrar_paises_ord(campo, i+1)
 
 # Funciones principal con menú y subfunciones
 def ordenar_paises():
+    paises = api.paises
     if not val_lista(paises):
         return
 
@@ -32,14 +33,14 @@ def ordenar_paises():
                     if opc == 1:
                         print("\n  Países ordenados por nombre  ")
                         print("-------------------------------")
-                        paises_ord = sorted(paises)
+                        paises_ord = sorted(paises, key=lambda pais: pais["nombre"])
                         mostrar_paises_ord(paises_ord)
 
                     elif opc == 2:
                         print("\n  Países ordenados por población  ")
                         print("----------------------------------")
                         paises_por_p = sorted(paises, key=lambda pais: pais["poblacion"], reverse=True)
-                        ordenar_paises(paises_por_p)
+                        mostrar_paises_ord(paises_por_p)
 
                     elif opc == 3:
                         print("\n  Países ordenados por superficie  ")

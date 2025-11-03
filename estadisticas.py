@@ -1,9 +1,10 @@
 # ==== FUNCIONES PARA MOSTRAR ESTADÍSTICAS DE PAÍSES ====
-from api import paises
+import api
 from validaciones import val_lista, val_num, val_opc_menu
 
 # Función para obtener estadísticas de población
 def estadisticas_poblacion(opc):
+    paises = api.paises
     if opc == "mayor":
         p_mayor = 0
         for pais in paises:
@@ -23,6 +24,7 @@ def estadisticas_poblacion(opc):
     
 # Función para obtener promedios
 def obtener_promedio(opc):
+    paises = api.paises
     if opc == "promedio":
         sum_p = 0
         for pais in paises:
@@ -38,37 +40,38 @@ def obtener_promedio(opc):
 
 # Función para obtener cantidad de países por continente
 def p_por_cont():
+    paises = api.paises
     america = 0
     europa = 0
     asia = 0
     oceania = 0
     africa = 0
     for pais in paises:
-        if pais["continente"] == "america":
+        if pais["continente"] == "América":
             america += 1
-        elif pais["continente"] == "europa":
+        elif pais["continente"] == "Europa":
             europa += 1
-        elif pais["continente"] == "asia":
+        elif pais["continente"] == "Asia":
             asia += 1
-        elif pais["continente"] == "oceania":
+        elif pais["continente"] == "Oceanía":
             oceania += 1
-        elif pais["continente"] == "africa":
+        elif pais["continente"] == "África":
             africa += 1
 
     resultado = (
-        "\n---------------------------------------------"
-        f'  Cantidad de países en América: {america}  '
-        "---------------------------------------------"
-        f'  Cantidad de países en Europa: {europa}  '
-        "---------------------------------------------"
-        f'  Cantidad de países en Asia: {asia}  '
-        "---------------------------------------------"
-        f'  Cantidad de países en Oceanía: {oceania}  '
-        "---------------------------------------------"
-        f'  Cantidad de países en África: {africa}  '
-        "---------------------------------------------"
-        f'      ¡No hay países en la antártida!       '
-        "---------------------------------------------"
+        "\n---------------------------------------------\n"
+        f'  Cantidad de países en América: {america}  \n'
+        "---------------------------------------------\n"
+        f'  Cantidad de países en Europa: {europa}  \n'
+        "---------------------------------------------\n"
+        f'  Cantidad de países en Asia: {asia}  \n'
+        "---------------------------------------------\n"
+        f'  Cantidad de países en Oceanía: {oceania}  \n'
+        "---------------------------------------------\n"
+        f'  Cantidad de países en África: {africa}  \n'
+        "---------------------------------------------\n"
+        f'      ¡No hay países en la antártida!       \n'
+        "---------------------------------------------\n"
     )
 
     return resultado
@@ -76,6 +79,7 @@ def p_por_cont():
 
 # Función principal de estadísticas
 def mostrar_estadisticas():
+    paises = api.paises
     if not val_lista(paises):
         return
 
@@ -88,7 +92,7 @@ def mostrar_estadisticas():
         print("3. Promedio de población")
         print("4. Promedio de superficie")
         print("5. Cantidad de países por continente")
-        print("5. Volver")
+        print("6. Volver")
         opc = input("Ingrese una opción(número): ")
 
         if val_num(opc):
@@ -118,6 +122,7 @@ def mostrar_estadisticas():
                     elif opc == 5:
                         print("\n  Cantidad de países por continentes  ")
                         print("--------------------------------------")
+                        print(p_por_cont())
                     elif opc == 6:
                         print("\nVolviendo...")
                         break

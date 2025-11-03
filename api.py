@@ -5,34 +5,36 @@
 # Importaciones necesarias
 import requests #---Importamos e instalamos requests---/Comando pip install requests\
 import csv # Importamos librería CSV
-from src.validaciones import val_csv, val_lista
+from validaciones import val_csv, val_lista
+
+paises = []
 
 # --- Configuración de la API ---
 URL_API = "https://restcountries.com/v3.1/all?fields=name,population,area,region,translations"
-
+REGION_ES = {"Americas":"América","Europe":"Europa","Asia":"Asia","Africa":"África","Oceania":"Oceanía","Antarctic":"Antártida"}
 def datos_api():
-    lista_paises = []
-
-    if val_csv("paises.csv"):
+    global paises
+    archivo = "paises.csv"
+    if val_csv(archivo):
         try:
-            with open("paises.csv", "r", encoding="utf-8") as paises:
-                datos = csv.DictReader(paises)
-            for fila in datos:
-                nombre = fila["nombre"]
-                poblacion = fila["población"]
-                superficie = fila["superficie"]
-                continente = fila["continente"]
+            with open("paises.csv", "r",newline="" ,encoding="utf-8") as archivo:
+                datos = csv.DictReader(archivo)
+                for fila in datos:
+                    nombre = fila["nombre"]
+                    poblacion = fila["poblacion"]
+                    superficie = fila["superficie"]
+                    continente = fila["continente"]
 
-                lista_paises.append({
-                    "nombre":nombre,
-                    "poblacion":int(poblacion),
-                    "superficie":float(superficie),
-                    "continente":continente
-                })
+                    paises.append({
+                        "nombre":nombre,
+                        "poblacion":int(poblacion),
+                        "superficie":float(superficie),
+                        "continente":continente
+                    })
 
             if val_lista(paises):
                 print("✅ Países cargados correctamente.")
-                return lista_paises
+                return paises
             else:
                 print("❌¡Error! el archivo no contiene datos válidos.")
 
@@ -47,35 +49,33 @@ def datos_api():
             respuesta.raise_for_status() #Lanza ERROR si el estado no es 200.
             datos = respuesta.json()
             print(f"✅ Se cargaron correctamente países.")
-            with open("paises.csv", "w", encoding="utf-8") as paises_csv:
+            with open("paises.csv", "w",newline="", encoding="utf-8") as paises_csv:
                 campos = ["nombre", "poblacion","superficie","continente"]
                 writer = csv.DictWriter(paises_csv,fieldnames=campos)
                 writer.writeheader()
+                paises.clear()
                 for pais in datos:
                     # Llamamos campos de la API.
                     nombre = pais.get("translations", {}).get("spa", {}).get("common", pais.get("name", {}).get("common", "Desconocido"))
                     poblacion = pais.get("population", "Desconocida")
                     superficie = pais.get("area", "Desconocida")
-                    continente = pais.get("region", "Desconocido")
-                    writer.writerow({ #Agregamos datos al CSV.
-                        "nombre": nombre,
-                        "poblacion": int(poblacion),
-                        "superficie": float(superficie),
-                        "continente": continente
-                        })
-                    lista_paises.append({ #Agregamos diccionario con datos a la lista.
-                        "nombre":nombre,
-                        "poblacion":int(poblacion),
-                        "superficie":float(superficie),
-                        "continente":continente
-                    })
-                
-                if val_lista(paises):
-                    print("✅ Países cargados correctamente.")
-                else:
-                    print("❌¡Error! No se pudo cargar la información de los países.")
+                    region = pais.get("region", "Desconocido")
+                    continente = REGION_ES.get(region, "Desconocido")
 
-                return lista_paises
+                    pais = {
+                        "nombre": nombre,
+                        "poblacion": poblacion,
+                        "superficie": superficie,
+                        "continente": continente
+                    }
+                    writer.writerow(pais)
+                    paises.append(pais)
+                
+            if val_lista(paises):
+                print("✅ Países cargados correctamente.")
+            else:
+                print("❌¡Error! No se pudo cargar la información de los países.")
+            return paises
             
         except requests.exceptions.RequestException as e:
             print(f"❌ Error de red o conexión: {e}") # Error de solicitud.
