@@ -6,13 +6,13 @@ import os
 # ---- Validaciones del csv ----
 def val_csv(archivo):
     if not os.path.exists(archivo):
-        print(f'❌¡El archivo "{archivo}" no existe!')
+        print(f'❌¡El archivo "paises.csv" no existe!')
         print("Creando nuevo archivo...")
         return False
     
     elif os.path.getsize(archivo) == 0:
-        print(f'❌¡El archivo "{archivo}" se encuentra vacío!')
-        print('Cargando información a "{archivo}".')
+        print(f'❌¡El archivo "paises.csv" se encuentra vacío!')
+        print(f'Cargando información a "paises.csv".')
         return False
     else:
         return True
